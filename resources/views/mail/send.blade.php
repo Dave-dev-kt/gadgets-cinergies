@@ -22,7 +22,7 @@
     </head>
     <body class="antialiased">
         <div>
-            Bonjour ce mail atteste que je récupère moi même mes gadgets merci et bonne journée
+            Bonjour ce mail atteste que je récupère moi même mes gadgets
         </div>
     </body>
 </html>
