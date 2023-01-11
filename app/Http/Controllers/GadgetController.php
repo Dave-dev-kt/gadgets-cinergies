@@ -28,7 +28,7 @@ class GadgetController extends Controller
         $matricule = $request->query('matricule');
         $agent = Agent::where('matricule', '=', $matricule)->get();
         $agents = Agent::all()->whereNotIn('matricule', $matricule);
-        return view('procurationgadget', compact('agent', 'matricule','agents'));
+        return view('procurationgadget', compact('agent', 'matricule', 'agents'));
     }
 
     public function procurationConfirm(Request $request)
@@ -40,6 +40,9 @@ class GadgetController extends Controller
             ->where('agents.matricule', '=', $matriculeAgent)
             ->get();
         $agentMandate = Agent::where('matricule', '=', $matriculeMandate)->get();
+        if ($agentMandate->isEmpty()) {
+            return response()->view('errorMatriculeAgentMandate', compact('matriculeAgent'));
+        }
         return view('procuration_confirm', compact('agentPrincipal', 'agentMandate'));
     }
 }

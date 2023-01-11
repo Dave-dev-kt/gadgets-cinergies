@@ -2,15 +2,14 @@
 
 namespace App\Mail;
 
-use App\Mail\SendMailSelf;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
 
-class SendMail extends Mailable
+class SendMailProcuration extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,6 +20,7 @@ class SendMail extends Mailable
      */
     public function __construct()
     {
+        //
     }
 
     /**
@@ -31,9 +31,7 @@ class SendMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address("davidadje070@gmail.com", 'David Adje'),
-            subject: 'Récupération de mes gadgets',
-
+            subject: 'Procuration de mes gadgets',
         );
     }
 
@@ -45,7 +43,7 @@ class SendMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mail.send',
+            view: 'mail.sendProcuration',
         );
     }
 

@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
-            font-size: 20px
+            font-size: 12px
         }
         table {
             border-collapse: collapse;
@@ -24,16 +24,37 @@
             padding: 16px;
         }
         thead{
-            background-color: #e8f2ff;
+            background-color: #fed7aa;
+        }
+        img{
+            height: 10%;
+        }
+        h2{
+            text-align: center
+        }
+        #last{
+            float: right;
+            padding-right: 5px
+        }
+        #first{
+            float: left;
+            padding-left: 10px
         }
     </style>
 </head>
 <body>
-    <p>Matricule : {{ $agents[0]->matricule }}</p>
-    <p>Nom : {{ $agents[0]->nom }}</p>
-    <p>Prenoms : {{ $agents[0]->prenoms }}</p>
-    <p>Categorie : {{ $agents[0]->libelle }}</p>
-    <h2 class="items-center">Gadgets</h2>
+    <div class="shrink-0 flex items-center">
+        <div class="image">
+            <img class="w-10 pb-5 justify-center" src="{{ public_path('images/logocienergies.png') }}">
+        </div>
+        <div class="perso">
+            <p>Matricule : {{ $agents[0]->matricule }}</p>
+            <p>Nom : {{ $agents[0]->nom }}</p>
+            <p>Prenoms : {{ $agents[0]->prenoms }}</p>
+            <p>Categorie : {{ $agents[0]->libelle }}</p>
+            <h2 class="items-center">Gadgets</h2>
+        </div>
+    </div>
 
 
 
@@ -63,7 +84,7 @@
             @endforeach
         </table>
         <br>
-        <p class="text-right">Signature</p>
+        <p id="first" class="text-right">Signature de l'agent</p>
     </div>
 </body>
 </html>

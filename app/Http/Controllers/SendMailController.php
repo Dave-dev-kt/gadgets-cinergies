@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Agent;
 use App\Mail\SendMail;
+use App\Mail\SendMailProcuration;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class SendMailController extends Controller
@@ -19,7 +18,7 @@ class SendMailController extends Controller
 
             $agent = Agent::where('matricule', '=', $matriculeAgent)->get();
 
-            Mail::to('davidadjewiz9@gmail.com')->send(new SendMail());
+            Mail::to('davidadje070@gmail.com')->send(new SendMail());
             $agentFind = Agent::where('matricule', '=', $matriculeAgent)->first()->update([
                 'is_email_sent' => 1
             ]);
@@ -28,7 +27,7 @@ class SendMailController extends Controller
 
             $agentPrincipal = Agent::where('matricule', '=', $matriculeAgent)->get();
             $agentMandate = Agent::where('matricule', '=', $matriculeMandate)->get();
-            Mail::to('davidadjewiz9@gmail.com')->send(new SendMail());
+            Mail::to('davidadje070@gmail.com')->send(new SendMailProcuration());
             $agentFind = Agent::where('matricule', '=', $matriculeAgent)->first()->update([
                 'is_email_sent' => 1
             ]);

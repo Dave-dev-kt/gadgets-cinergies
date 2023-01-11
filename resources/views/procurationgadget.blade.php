@@ -2,8 +2,8 @@
     <form action="{{ route('procurationConfirm',['matricule' => $matricule]) }}">
         <div>
             <x-input-label for="matriculeAgent" :value="__('Votre matricule')" />
-            <x-text-input readonly id="matriculeAgent" class="block mt-2 w-full" type="text" name="matriculeAgent" :value="$matricule"/>
-
+            <x-text-input readonly id="matriculeAgent" class="block w-full" type="text" name="matriculeAgent" :value="$matricule"/>
+            <br>
             <x-input-label for="matriculeMandate" :value="__('Matricule de l\'agent mandaté')" />
             <x-text-input id="matriculeMandate" class="block mt-1 w-full" type="text" name="matriculeMandate" :value="old('matriculeMandate')" required/>
 
