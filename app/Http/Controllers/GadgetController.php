@@ -43,6 +43,9 @@ class GadgetController extends Controller
         if ($agentMandate->isEmpty()) {
             return response()->view('errorMatriculeAgentMandate', compact('matriculeAgent'));
         }
+        if ($matriculeAgent === $matriculeMandate) {
+            return response()->view('errorSameMatricule', compact('matriculeAgent'));
+        }
         return view('procuration_confirm', compact('agentPrincipal', 'agentMandate'));
     }
 }
