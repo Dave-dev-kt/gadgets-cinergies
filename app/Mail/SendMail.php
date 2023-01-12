@@ -12,6 +12,9 @@ use Illuminate\Mail\Mailables\Envelope;
 
 class SendMail extends Mailable
 {
+
+    public String $mail_from;
+    public String $name_from;
     use Queueable, SerializesModels;
 
     /**
@@ -19,8 +22,10 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(String $mail_from, String $name_from)
     {
+        $this->mail_from = $mail_from;
+        $this->name_from = $name_from;
     }
 
     /**
@@ -31,9 +36,9 @@ class SendMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address("davidadje070@gmail.com", 'David Adje'),
-            subject: 'Récupération de mes gadgets',
 
+            from: new Address($this->mail_from, $this->name_from),
+            subject: 'Récupération de mes gadgets',
         );
     }
 

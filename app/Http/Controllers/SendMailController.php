@@ -17,8 +17,9 @@ class SendMailController extends Controller
         if ($matriculeMandate == null) {
 
             $agent = Agent::where('matricule', '=', $matriculeAgent)->get();
-
-            Mail::to('davidadje070@gmail.com')->send(new SendMail());
+            $mail = $agent[0]->email;
+            $nomPrenoms = $agent[0]->nom . ' ' . $agent[0]->prenoms;
+            Mail::to('davidadje070@gmail.com')->send(new SendMail($mail, $nomPrenoms));
             $agentFind = Agent::where('matricule', '=', $matriculeAgent)->first()->update([
                 'is_email_sent' => 1
             ]);
@@ -27,7 +28,12 @@ class SendMailController extends Controller
 
             $agentPrincipal = Agent::where('matricule', '=', $matriculeAgent)->get();
             $agentMandate = Agent::where('matricule', '=', $matriculeMandate)->get();
-            Mail::to('davidadje070@gmail.com')->send(new SendMailProcuration());
+
+            $mailAgent = $agentPrincipal[0]->email;
+            $nomPrenomsAgent = $agentPrincipal[0]->nom . ' ' . $agentPrincipal[0]->prenoms;
+            $mailAgentMandate = $agentMandate[0]->email;
+
+            Mail::to(config('mail.to.address'))->send(new SendMailProcuration($mailAgent, $nomPrenomsAgent, $mailAgentMandate));
             $agentFind = Agent::where('matricule', '=', $matriculeAgent)->first()->update([
                 'is_email_sent' => 1
             ]);
